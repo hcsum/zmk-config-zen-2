@@ -7,8 +7,6 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/outputs.h>
-#include <dt-bindings/zmk/rgb.h>
 
 / {
     chosen {
@@ -19,6 +17,17 @@
 };
 
 / {
+    behaviors {
+        alt_left: alt_left {
+            compatible = "zmk,behavior-mod-morph";
+            label = "ALT_LEFT";
+            bindings = <&kp H>, <&kp LEFT>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_RALT)>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -31,9 +40,9 @@
 
             bindings = <
 &kp ESC        &kp Q  &kp W  &kp E     &kp R        &kp T        &kp Y        &kp U  &kp I      &kp O    &kp P     &kp BSPC
-&mt LCTRL TAB  &kp A  &kp S  &kp D     &kp F        &kp G        &kp H        &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
+&mt LCTRL TAB  &kp A  &kp S  &kp D     &kp F        &kp G        &alt_left    &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
 &kp LSHFT      &kp Z  &kp X  &kp C     &kp V        &kp B        &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RIGHT_SHIFT
-                            &kp LGUI  &lt 1 SPACE  &kp SPACE    &lt 2 ENTER  &mo 1  &kp RALT
+                             &kp LGUI  &lt 1 SPACE  &kp SPACE    &lt 2 ENTER  &mo 1  &kp RALT
             >;
         };
 
