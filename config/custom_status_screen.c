@@ -8,7 +8,7 @@
 #include "widgets/battery_status.h"
 #include "widgets/peripheral_status.h"
 #include "widgets/output_status.h"
-#include "widgets/layer_status.h"
+// #include "widgets/layer_status.h"
 #include "custom_status_screen.h"
 
 #include <zephyr/logging/log.h>
@@ -29,9 +29,9 @@ static struct zmk_widget_output_status output_status_widget;
 static struct zmk_widget_peripheral_status peripheral_status_widget;
 #endif
 
-#if IS_ENABLED(CONFIG_CUSTOM_WIDGET_LAYER_STATUS)
-static struct zmk_widget_layer_status layer_status_widget;
-#endif
+// #if IS_ENABLED(CONFIG_CUSTOM_WIDGET_LAYER_STATUS)
+// static struct zmk_widget_layer_status layer_status_widget;
+// #endif
 
 lv_obj_t *zmk_display_status_screen() {
 
@@ -54,17 +54,17 @@ lv_obj_t *zmk_display_status_screen() {
                  41);
 #endif
 
-  #if IS_ENABLED(CONFIG_CUSTOM_WIDGET_LAYER_STATUS)
-   lv_obj_t *LayersHeading;
-   LayersHeading = lv_img_create(screen);
-    lv_obj_align(LayersHeading, LV_ALIGN_BOTTOM_MID, 0, -30);
-    lv_img_set_src(LayersHeading, &layers2);
-
-    zmk_widget_layer_status_init(&layer_status_widget, screen);
-   lv_obj_set_style_text_font(zmk_widget_layer_status_obj(&layer_status_widget),
-                               &lv_font_montserrat_16, LV_PART_MAIN);
-   lv_obj_align(zmk_widget_layer_status_obj(&layer_status_widget), LV_ALIGN_BOTTOM_MID, 0, -5);
-  #endif                                   
+  // #if IS_ENABLED(CONFIG_CUSTOM_WIDGET_LAYER_STATUS)
+  //  lv_obj_t *LayersHeading;
+  //  LayersHeading = lv_img_create(screen);
+  //   lv_obj_align(LayersHeading, LV_ALIGN_BOTTOM_MID, 0, -30);
+  //   lv_img_set_src(LayersHeading, &layers2);
+  //
+  //   zmk_widget_layer_status_init(&layer_status_widget, screen);
+  //  lv_obj_set_style_text_font(zmk_widget_layer_status_obj(&layer_status_widget),
+  //                              &lv_font_montserrat_16, LV_PART_MAIN);
+  //  lv_obj_align(zmk_widget_layer_status_obj(&layer_status_widget), LV_ALIGN_BOTTOM_MID, 0, -5);
+  // #endif                                   
  
 
  #if !IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
