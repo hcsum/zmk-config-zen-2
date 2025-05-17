@@ -84,7 +84,7 @@
 &cmd_esc       &kp Q  &kp W  &kp E     &kp R        &kp T        &kp Y        &kp U      &kp I      &kp O       &kp P     &kp BSPC
 &mt LCTRL TAB  &kp A  &kp S  &kp D     &kp F        &kp G        &alt_left    &alt_down  &alt_up    &alt_right  &kp SEMI  &kp SQT
 &kp LSHFT      &kp Z  &kp X  &kp C     &kp V        &kp B        &kp N        &kp M      &kp COMMA  &kp DOT     &kp FSLH  &kp RIGHT_SHIFT
-                             &kp LGUI  &lt 1 SPACE  &kp SPACE    &lt 2 ENTER  &mo 1      &kp RALT
+                             &kp LGUI  &kp SPACE  &trans    &lt 2 ENTER  &mo 1      &kp RALT
             >;
         };
 
