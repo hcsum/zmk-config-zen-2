@@ -52,7 +52,7 @@ jobs:
           cp build/zephyr/zmk.uf2 corneish_zen_v2_right_zmk.uf2
       
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: firmware
           path: |
