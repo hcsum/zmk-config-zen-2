@@ -10,9 +10,9 @@
 #include <lvgl.h>
 #include <zephyr/kernel.h>
 
+// Minimal structure for layer status widget
 struct zmk_widget_layer_status {
     sys_snode_t node;
-    lv_obj_t *obj;
 };
 
 int zmk_widget_layer_status_init(struct zmk_widget_layer_status *widget, lv_obj_t *parent);
