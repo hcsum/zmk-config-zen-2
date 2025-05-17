@@ -1,51 +1,6 @@
-name: Build
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-  workflow_dispatch:
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    container:
-      image: zmkfirmware/zmk-build-arm:3.5
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Cache west modules
-        uses: actions/cache@v3
-        with:
-          path: |
-            modules/
-            tools/
-            zephyr/
-            bootloader/
-          key: ${{ runner.os }}-modules-${{ hashFiles('config/west.yml') }}
-      - name: West Init
-        run: west init -l config
-      - name: West Update
-        run: west update
-      - name: West Zephyr export
-        run: west zephyr-export
-      - name: West Build (Left)
-        id: west-build-left
-        run: west build -s zmk/app -b corneish_zen_v2_left -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DCONFIG_ZMK_WIDGET_LAYER_STATUS=n -DCONFIG_CUSTOM_WIDGET_LAYER_STATUS=n
-      - name: Corneish Zen DTS File
-        if: ${{ always() && steps.west-build-left.outcome == 'success' }}
-        run: cat -n build/zephyr/corneish_zen_v2_left.dts.pre.tmp
-      - name: Rename zmk.uf2 (Left)
-        run: cp build/zephyr/zmk.uf2 corneish_zen_v2_left.uf2
-      - name: West Build (Right)
-        run: west build --pristine -s zmk/app -b corneish_zen_v2_right -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DCONFIG_ZMK_WIDGET_LAYER_STATUS=n -DCONFIG_CUSTOM_WIDGET_LAYER_STATUS=n
-      - name: Rename zmk.uf2 (Right)
-        run: cp build/zephyr/zmk.uf2 corneish_zen_v2_right.uf2
-      - name: Archive firmware
-        uses: actions/upload-artifact@v3
-        with:
-          name: firmware
-          path: |
-            corneish_zen_v2_left.uf2
-            corneish_zen_v2_right.uf2
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
 
